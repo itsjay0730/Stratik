@@ -1,70 +1,73 @@
 # Tactical Analysis 🧠🔥
 
-A full-stack scouting and analytics tool for competitive esports teams.  
-Generates **AI-powered scouting reports and counter-strategies** using real match data from GRID.gg.
+A full-stack AI-powered scouting assistant for competitive esports teams.  
+Interact with a conversational analyst to get strategic insights, metrics, and counter-play recommendations using real match data from GRID.gg.
 
-Currently supports **Valorant**
+Currently supports **Valorant and League of Legends**.
+
+---
 
 ## ✨ Features
 
-- 🔍 **Team search by name** (with aliases like SEN, FNC, LOUD)
-- 📊 **Automatic match & round analysis** using GRID endstate data
-- 🤖 **AI-generated scouting reports**
-  - Playstyle summary
-  - Strengths & weaknesses
-  - Counter-strategy recommendations
-- 📈 **Quick metrics dashboard**
-  - Series count
-  - Total rounds
-  - Attack & pistol win rates
-  - First blood rate
-  - Average round duration
-- 💾 **Backend caching**
-  - Team search results
-  - Match endstates (disk cache)
-  - Prevents API rate-limit issues
-- 🖥️ **Modern UI**
-  - Side-by-side report & metrics
-  - Sticky metrics panel
-  - Scrollable report body for long reports
-  - Smooth auto-scroll on search
-- ⚡ **Fast iteration**
-  - Cached data reused across requests
-  - No redundant API calls
+- 💬 **Conversational AI analyst**
+  - Chat with an AI scouting assistant
+  - Ask natural-language questions about teams, maps, agents, and playstyles
+  - Context-aware follow-up questions supported
+
+- 🎮 **Game-aware analysis**
+  - Valorant-specific understanding
+  - Team tendencies, strengths, weaknesses, and macro patterns
+  - Map and side-based insights
+
+- 🤖 **AI-generated insights**
+  - Playstyle breakdowns
+  - Strategic advantages and vulnerabilities
+  - Counter-strategy suggestions based on opponent behavior
+
+- 📊 **On-demand metrics**
+  - Series and round statistics
+  - Attack, defense, and pistol performance
+  - First blood rate and average round duration
+
+- 💾 **Smart backend caching**
+  - Team searches and match endstates cached on disk
+  - Reduces API usage and prevents rate-limit issues
+  - Faster responses for repeated queries
+
+- 🖥️ **Chat-first UI**
+  - Conversational interface instead of static reports
+  - Metrics surfaced inline when relevant
+  - Smooth scrolling and responsive layout
+
+---
 
 ## 🧱 Tech Stack
 
 ### Frontend
-
-- **React + TypeScript**
-- Custom CSS (glassmorphism / neon style)
+- React + TypeScript
+- Tailwind CSS
 - Smooth scrolling & responsive layout
 
 ### Backend
-
-- **Node.js + Express**
+- Node.js + Express
 - GRID.gg GraphQL API
-- Disk-based caching (`/cache`)
+- Disk-based caching
 - OpenAI (for scouting report generation)
 
 ---
 
-## 📂 Project Structure
+## 🚀 How to Run
 
-├── backend/
-│ ├── index.ts # Express server
-│ ├── grid/ # GRID API helpers
-│ ├── metrics/ # Match & round aggregation logic
-│ ├── ai/ # AI report generation
-│ └── cache/ # Cached endstates & searches
-│
-├── frontend/
-│ ├── src/
-│ │ ├── components/
-│ │ │ ├── layout/
-│ │ │ │ ├── header.tsx
-│ │ │ │ └── content.tsx
-│ │ ├── types/
-│ │ ├── App.tsx
-│ │ └── content.css
-│ └── index.html
+### Backend
+```bash
+cd supabase
+npm install
+npm run dev
+```
+
+### Frontend
+```bash
+cd src
+npm install
+npm run dev
+```
