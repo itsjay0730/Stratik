@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  Design System - Esports Tactical Theme
+  Supports: Valorant (red accent) and League of Legends (gold accent)
+*/
+
+@layer base {
+  :root {
+    /* Base palette - Dark tactical theme */
+    --background: 220 20% 4%;
+    --foreground: 220 15% 95%;
+
+    --card: 220 18% 7%;
+    --card-foreground: 220 15% 95%;
+    --card-hover: 220 16% 10%;
+
+    --popover: 220 18% 7%;
+    --popover-foreground: 220 15% 95%;
+
+    /* Accent - Valorant Red (default) */
+    --primary: 352 100% 63%;
+    --primary-foreground: 0 0% 100%;
+    --primary-bright: 352 100% 70%;
+    --primary-dim: 352 100% 63%;
+    --primary-soft: 352 100% 63%;
+    --primary-glow: 352 100% 63%;
+
+    --secondary: 220 15% 12%;
+    --secondary-foreground: 220 15% 85%;
+
+    --muted: 220 12% 15%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 220 15% 12%;
+    --accent-foreground: 352 100% 63%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 12%;
+    --border-strong: 220 15% 18%;
+    --input: 220 15% 12%;
+    --ring: 352 100% 63%;
+
+    /* Feedback colors */
+    --success: 142 76% 68%;
+    --warning: 45 93% 56%;
+    --info: 217 91% 68%;
+
+    /* Radius system */
+    --radius: 0.75rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+
+    /* Shadows */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 24px 64px rgba(0, 0, 0, 0.55);
+    --shadow-glow: 0 0 40px hsl(var(--primary) / 0.15);
+
+    /* Typography */
+    --font-display: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'SF Mono', 'Monaco', 'Consolas', monospace;
+
+    /* Sidebar */
+    --sidebar-background: 220 18% 5%;
+    --sidebar-foreground: 220 15% 85%;
+    --sidebar-primary: 352 100% 63%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 10%;
+    --sidebar-accent-foreground: 220 15% 95%;
+    --sidebar-border: 220 15% 12%;
+    --sidebar-ring: 352 100% 63%;
+  }
+
+  /* League of Legends theme */
+  [data-game="league"] {
+    --primary: 43 55% 61%;
+    --primary-bright: 43 60% 70%;
+    --primary-dim: 43 50% 50%;
+    --primary-soft: 43 55% 61%;
+    --primary-glow: 43 55% 61%;
+    --ring: 43 55% 61%;
+    --accent-foreground: 43 55% 61%;
+    --sidebar-primary: 43 55% 61%;
+    --sidebar-ring: 43 55% 61%;
+  }
+
+  .dark {
+    /* Same as root - this is a dark-first theme */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: 0.05em;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted) / 0.3);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.3);
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer components {
+  /* Card with animated border effect */
+  .card-glow {
+    position: relative;
+    background: hsl(var(--card));
+    backdrop-filter: blur(16px) saturate(1.2);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-glow::before {
+    content: "";
+    position: absolute;
+    inset: -0.5px;
+    border-radius: calc(var(--radius-lg) + 0.5px);
+    background: conic-gradient(
+      from var(--border-angle, 0deg),
+      transparent 0deg,
+      transparent 60deg,
+      hsl(var(--primary)) 90deg,
+      hsl(var(--primary-bright)) 100deg,
+      hsl(var(--primary)) 110deg,
+      transparent 140deg,
+      transparent 360deg
+    );
+    animation: border-rotate 8s linear infinite;
+    z-index: -1;
+  }
+
+  .card-glow::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: calc(var(--radius-lg) - 1px);
+    background: hsl(var(--card));
+    z-index: -1;
+  }
+
+  .card-glow:hover {
+    background: hsl(var(--card-hover));
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+
+  /* Tactical input styling */
+  .tactical-input {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--primary) / 0.35);
+    transition: all 0.25s ease;
+  }
+
+  .tactical-input:hover {
+    border-color: hsl(var(--primary) / 0.6);
+  }
+
+  .tactical-input:focus {
+    border-color: hsl(var(--primary) / 0.7);
+    box-shadow: 0 0 26px hsl(var(--primary) / 0.35),
+                inset 0 0 14px hsl(var(--primary) / 0.15);
+    outline: none;
+  }
+
+  /* Corner brackets for tactical feel */
+  .tactical-corners {
+    position: relative;
+  }
+
+  .tactical-corners::before,
+  .tactical-corners::after {
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: hsl(var(--foreground) / 0.9);
+    pointer-events: none;
+    transition: all 0.25s ease;
+  }
+
+  .tactical-corners::before {
+    top: -9px;
+    left: -9px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+
+  .tactical-corners::after {
+    bottom: -9px;
+    right: -9px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+
+  /* Message bubbles */
+  .message-user {
+    background: hsl(var(--primary) / 0.12);
+    border: 1px solid hsl(var(--primary) / 0.25);
+  }
+
+  .message-assistant {
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, hsl(var(--primary-bright)), hsl(var(--primary)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Scan line animation */
+  .scan-line::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.8), transparent);
+    animation: scan 3s linear infinite;
+  }
+
+  /* Loading pulse */
+  .pulse-loading {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Glass effect */
+  .glass {
+    backdrop-filter: blur(16px) saturate(1.2);
+    -webkit-backdrop-filter: blur(16px) saturate(1.2);
+  }
+}
+
+@keyframes border-rotate {
+  0% {
+    --border-angle: 0deg;
+  }
+  100% {
+    --border-angle: 360deg;
+  }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes scan {
+  0% { top: -20%; opacity: 0; }
+  50% { opacity: 1; }
+  100% { top: 120%; opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-rise {
+  animation: hero-rise 0.6s ease-out forwards;
+}
