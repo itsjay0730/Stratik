@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -66,9 +66,9 @@
     --shadow-glow: 0 0 40px hsl(var(--primary) / 0.15);
 
     /* Typography */
-    --font-display: 'Orbitron', sans-serif;
-    --font-body: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-mono: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    --font-display: "Orbitron", sans-serif;
+    --font-body: "Rajdhani", -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: "SF Mono", "Monaco", "Consolas", monospace;
 
     /* Sidebar */
     --sidebar-background: 220 18% 5%;
@@ -116,7 +116,12 @@
     line-height: 1.6;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     letter-spacing: 0.05em;
   }
@@ -202,7 +207,7 @@
   .tactical-input:focus {
     border-color: hsl(var(--primary) / 0.7);
     box-shadow: 0 0 26px hsl(var(--primary) / 0.35),
-                inset 0 0 14px hsl(var(--primary) / 0.15);
+      inset 0 0 14px hsl(var(--primary) / 0.15);
     outline: none;
   }
 
@@ -223,15 +228,15 @@
   }
 
   .tactical-corners::before {
-    top: -9px;
-    left: -9px;
+    top: -8.9px;
+    left: -8.9px;
     border-top: 2px solid;
     border-left: 2px solid;
   }
 
   .tactical-corners::after {
-    bottom: -9px;
-    right: -9px;
+    bottom: -8.9px;
+    right: -8.9px;
     border-bottom: 2px solid;
     border-right: 2px solid;
   }
@@ -249,7 +254,11 @@
 
   /* Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, hsl(var(--primary-bright)), hsl(var(--primary)));
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary-bright)),
+      hsl(var(--primary))
+    );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -263,7 +272,12 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.8), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.8),
+      transparent
+    );
     animation: scan 3s linear infinite;
   }
 
@@ -307,14 +321,27 @@
 }
 
 @keyframes scan {
-  0% { top: -20%; opacity: 0; }
-  50% { opacity: 1; }
-  100% { top: 120%; opacity: 0; }
+  0% {
+    top: -20%;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 @keyframes hero-rise {
