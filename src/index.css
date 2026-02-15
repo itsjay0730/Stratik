@@ -94,11 +94,6 @@
     --sidebar-ring: 43 55% 61%;
   }
 
-  .dark {
-    /* Same as root - this is a dark-first theme */
-  }
-}
-
 @layer base {
   * {
     @apply border-border;
@@ -228,8 +223,8 @@
   }
 
   .tactical-corners::before {
-    top: -8.9px;
-    left: -8.9px;
+    top: -8px;
+    left: -8px;
     border-top: 2px solid;
     border-left: 2px solid;
   }
@@ -237,8 +232,8 @@
   .tactical-corners::after {
     bottom: -8.9px;
     right: -8.9px;
-    border-bottom: 2px solid;
-    border-right: 2px solid;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
   }
 
   /* Message bubbles */
@@ -299,10 +294,10 @@
   }
 
   /* Glass effect */
-  .glass {
+  /* .glass {
     backdrop-filter: blur(16px) saturate(1.2);
     -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  }
+  } */
 }
 
 @keyframes border-rotate {
