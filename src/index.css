@@ -94,6 +94,11 @@
     --sidebar-ring: 43 55% 61%;
   }
 
+  .dark {
+    /* Same as root - this is a dark-first theme */
+  }
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -206,7 +211,6 @@
     outline: none;
   }
 
-  /* Corner brackets for tactical feel */
   .tactical-corners {
     position: relative;
   }
@@ -236,7 +240,6 @@
     border-right: 1px solid;
   }
 
-  /* Message bubbles */
   .message-user {
     background: hsl(var(--primary) / 0.12);
     border: 1px solid hsl(var(--primary) / 0.25);
@@ -247,7 +250,6 @@
     border: 1px solid hsl(var(--border));
   }
 
-  /* Gradient text */
   .gradient-text {
     background: linear-gradient(
       135deg,
@@ -259,7 +261,6 @@
     background-clip: text;
   }
 
-  /* Scan line animation */
   .scan-line::before {
     content: "";
     position: absolute;
@@ -276,14 +277,12 @@
     animation: scan 3s linear infinite;
   }
 
-  /* Loading pulse */
   .pulse-loading {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 }
 
 @layer utilities {
-  /* Hide scrollbar but keep functionality */
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -293,11 +292,10 @@
     display: none;
   }
 
-  /* Glass effect */
-  /* .glass {
+  .glass {
     backdrop-filter: blur(16px) saturate(1.2);
     -webkit-backdrop-filter: blur(16px) saturate(1.2);
-  } */
+  }
 }
 
 @keyframes border-rotate {

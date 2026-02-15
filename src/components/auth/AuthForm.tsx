@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useAuth } from '@/hooks/useAuth';
-import { Loader2 } from 'lucide-react';
-import { TacticalBackground } from './TacticalBackground';
-import { StratikLogo } from '@/components/chat/StratikLogo';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useAuth } from "@/hooks/useAuth";
+import { Loader2 } from "lucide-react";
+import { TacticalBackground } from "./TacticalBackground";
+import { StratikLogo } from "@/components/chat/StratikLogo";
+import { toast } from "sonner";
 
 export function AuthForm() {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const { signIn, signUp } = useAuth();
 
@@ -23,14 +23,14 @@ export function AuthForm() {
       if (isSignUp) {
         const { error } = await signUp(email, password);
         if (error) throw error;
-        toast.success('Check your email to confirm your account!');
+        toast.success("Check your email to confirm your account!");
       } else {
         const { error } = await signIn(email, password);
         if (error) throw error;
-        toast.success('Welcome back!');
+        toast.success("Welcome back!");
       }
     } catch (error: any) {
-      toast.error(error.message || 'Authentication failed');
+      toast.error(error.message || "Authentication failed");
     } finally {
       setLoading(false);
     }
@@ -39,7 +39,7 @@ export function AuthForm() {
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
       <TacticalBackground />
-      
+
       <div className="w-full max-w-md relative z-10">
         {/* Logo */}
         <div className="flex items-center justify-center gap-3 mb-8 animate-hero-rise">
@@ -49,15 +49,18 @@ export function AuthForm() {
           </span>
         </div>
 
-        {/* Form Card */}
-        <div className="card-glow p-8 animate-hero-rise" style={{ animationDelay: '0.1s', opacity: 0 }}>
+        {}
+        <div
+          className="card-glow p-8 animate-hero-rise"
+          style={{ animationDelay: "0.1s", opacity: 0 }}
+        >
           <h1 className="font-display text-xl font-bold tracking-wide text-center mb-2">
-            {isSignUp ? 'CREATE ACCOUNT' : 'WELCOME BACK'}
+            {isSignUp ? "CREATE ACCOUNT" : "WELCOME BACK"}
           </h1>
           <p className="text-muted-foreground text-center mb-6 text-sm">
-            {isSignUp 
-              ? 'Start scouting competitive teams' 
-              : 'Sign in to access your scouting reports'}
+            {isSignUp
+              ? "Start scouting competitive teams"
+              : "Sign in to access your scouting reports"}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -100,9 +103,9 @@ export function AuthForm() {
               {loading ? (
                 <Loader2 className="w-5 h-5 animate-spin" />
               ) : isSignUp ? (
-                'CREATE ACCOUNT'
+                "CREATE ACCOUNT"
               ) : (
-                'SIGN IN'
+                "SIGN IN"
               )}
             </Button>
           </form>
@@ -113,9 +116,21 @@ export function AuthForm() {
               onClick={() => setIsSignUp(!isSignUp)}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              {isSignUp 
-                ? <>Already have an account? <span className="underline text-primary hover:text-primary-bright">Sign in</span></> 
-                : <>Don't have an account? <span className="underline text-primary hover:text-primary-bright">Sign up</span></>}
+              {isSignUp ? (
+                <>
+                  Already has account ??{" "}
+                  <span className="underline text-primary hover:text-primary-bright">
+                    Sign in
+                  </span>
+                </>
+              ) : (
+                <>
+                  Do not have any account ??{" "}
+                  <span className="underline text-primary hover:text-primary-bright">
+                    Sign up
+                  </span>
+                </>
+              )}
             </button>
           </div>
         </div>
