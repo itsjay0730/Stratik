@@ -1,24 +1,28 @@
-export type GameType = 'valorant' | 'league';
+export type GameType = "valorant" | "league";
 
-export interface Chat {
+export type MessageRole = "user" | "assistant";
+
+interface Timestamps {
+  created_at: string;
+  updated_at?: string;
+}
+
+export interface Chat extends Timestamps {
   id: string;
   user_id: string;
   title: string;
   game: GameType;
   reported_teams: string[];
-  created_at: string;
-  updated_at: string;
 }
 
-export interface Message {
+export interface Message extends Timestamps {
   id: string;
   chat_id: string;
   user_id: string;
-  role: 'user' | 'assistant';
+  role: MessageRole;
   content: string;
   team_mentioned?: string | null;
   is_first_team_report?: boolean;
-  created_at: string;
 }
 
 export interface TeamCache {
@@ -30,18 +34,20 @@ export interface TeamCache {
   cached_at: string;
 }
 
+export interface AggregatedMetrics {
+  seriesCount?: number;
+  totalRounds?: number;
+  attackWinRate?: number;
+  pistolWinRate?: number;
+  firstBloodRate?: number;
+  avgRoundDuration?: number;
+}
+
 export interface ScoutingReport {
   teamId: string;
   teamName: string;
   report: string;
   metrics?: {
-    agg?: {
-      seriesCount?: number;
-      totalRounds?: number;
-      attackWinRate?: number;
-      pistolWinRate?: number;
-      firstBloodRate?: number;
-      avgRoundDuration?: number;
-    };
+    agg?: AggregatedMetrics;
   };
 }
