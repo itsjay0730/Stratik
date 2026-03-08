@@ -15,6 +15,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       let newValue = e.target.value;
 
+      // Apply text transformation
       if (transform === "uppercase") {
         newValue = newValue.toUpperCase();
       } else if (transform === "lowercase") {
@@ -23,16 +24,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
       setValue(newValue);
 
-      if (onChange) {
-        onChange({
-          ...e,
-          target: { ...e.target, value: newValue },
-        });
-      }
+      // Pass transformed value to parent handler
+      onChange?.({
+        ...e,
+        target: { ...e.target, value: newValue },
+      });
     };
 
     return (
       <input
+        ref={ref}
         type={type}
         value={value}
         onChange={handleChange}
@@ -40,7 +41,6 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           className
         )}
-        ref={ref}
         {...props}
       />
     );
